@@ -20,11 +20,9 @@ if not os.path.exists("poll.csv"):
 
 polls_df = pd.read_csv("poll.csv").set_index("id")
 
-
 @app.route("/")
 def index():
     return render_template("index.html", polls=polls_df)
-
 
 @app.route("/poll/<int:id>")
 def poll(id):
@@ -57,7 +55,5 @@ def vote(id, option):
     else:
         return "You have already voted"
         
-
-
 if __name__ == "__main__":
     app.run(debug=True)
