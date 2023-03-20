@@ -1,0 +1,4 @@
+- name: Format with Black
+  uses: lgeiger/black-action@master
+  with:
+    args: . --check
