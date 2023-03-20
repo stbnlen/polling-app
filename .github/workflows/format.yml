@@ -1,5 +1,29 @@
-name: Format with Black
-uses: lgeiger/black-action@v2.0.0
-with:
-  args: .
-  check: true
+name: format-with-black
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  format:
+    name: Format with Black
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Install Black
+        run: pip install black
+      - name: Format with Black
+        run: black .
+        # Check if the code is formatted correctly
+        # If it is not, the action will fail
+        # Remove the "--check" flag to apply the formatting
+        # instead of just checking it
+        args: --check
