@@ -1,5 +1,5 @@
 name: Format with Black
-  uses: lgeiger/black-action@v2.0.0
-  with:
-    args: .
-    check: true
+uses: lgeiger/black-action@v2.0.0
+with:
+  args: .
+  check: true
