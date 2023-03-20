@@ -20,9 +20,11 @@ if not os.path.exists("poll.csv"):
 
 polls_df = pd.read_csv("poll.csv").set_index("id")
 
+
 @app.route("/")
 def index():
     return render_template("index.html", polls=polls_df)
+
 
 @app.route("/poll/<int:id>")
 def poll(id):
@@ -35,11 +37,19 @@ def create_poll():
     if request.method == "GET":
         return render_template("new_poll.html")
     elif request.method == "POST":
-        poll = request.form['poll']
-        option1 = request.form['option1']
-        option2 = request.form['option2']
-        option3 = request.form['option3']
-        polls_df.loc[max(polls_df.index.values) + 1] = [poll, option1, option2, option3, 0, 0, 0]
+        poll = request.form["poll"]
+        option1 = request.form["option1"]
+        option2 = request.form["option2"]
+        option3 = request.form["option3"]
+        polls_df.loc[max(polls_df.index.values) + 1] = [
+            poll,
+            option1,
+            option2,
+            option3,
+            0,
+            0,
+            0,
+        ]
         polls_df.to_csv("poll.csv")
         return redirect(url_for("index"))
 
@@ -54,6 +64,7 @@ def vote(id, option):
         return response
     else:
         return "You have already voted"
-        
+
+
 if __name__ == "__main__":
     app.run(debug=True)
