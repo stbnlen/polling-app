@@ -1,0 +1,8 @@
+# Archivos de configuración local que no deben estar en la imagen de Docker
+instance/
+*.pyc
+*.pyo
+
+# Archivos de registro y caché que no se necesitan en la imagen de Docker
+logs/
+__pycache__/
